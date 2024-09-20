@@ -12,7 +12,11 @@ export default {
     components: { SelecionarIngredientes, SuaLista },
     methods: {
       adicionarIngrediente(ingrediente: string) {
+        console.log('caiu aqui')
         this.ingredientes.push(ingrediente)
+      },
+      removerIngrediente(ingrediente: string) {
+      this.ingredientes = this.ingredientes.filter(ingredienteAtual => ingredienteAtual != ingrediente)
       }
     }
 }
@@ -23,7 +27,8 @@ export default {
     <main class="conteudo-principal">
         <SuaLista :ingredientes="ingredientes"/>
         <SelecionarIngredientes 
-        @adicionar-ingrediente="adicionarIngrediente($event)"/>
+        @adicionar-ingrediente="adicionarIngrediente($event)"
+        @remover-ingrediente="removerIngrediente($event)"/>
     </main>
 </template>
 

@@ -13,21 +13,20 @@ export default {
     },
     methods: {
         aoClicar() {
-           this.selecionado = !this.selecionado
+            this.selecionado = !this.selecionado
+            if (!this.selecionado) {
+                return this.$emit('removerIngrediente', this.ingrediente)
+            }
 
-           if(this.selecionado) {
             this.$emit('adicionarIngrediente', this.ingrediente)
-           }
         }
     },
-    emits: ['adicionarIngrediente']
+    emits: ['adicionarIngrediente', 'removerIngrediente']
 }
 </script>
 
 <template>
-    <button class="ingrediente" 
-    @click="aoClicar()"
-    :aria-pressed="selecionado">
+    <button class="ingrediente" @click="aoClicar()" :aria-pressed="selecionado">
         <Tag :texto="ingrediente" :ativa="selecionado" />
     </button>
 </template>
