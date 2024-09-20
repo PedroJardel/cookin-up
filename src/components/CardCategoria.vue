@@ -17,13 +17,13 @@ import Tag from './Tag.vue';
         <header class="categoria__cabecalho">
             <img :src="`/imagens/icones/categorias_ingredientes/${categoria.imagem}`" alt="" class="categoria__imagem">
             <h2 class="paragrafo-lg categoria__nome">
+              {{  categoria.nome }}
+            </h2>
                 <ul class="categoria__ingredientes">
                     <li v-for="ingrediente in categoria.ingredientes" :key="ingrediente">
                         <Tag :texto="ingrediente"/>
                     </li>
                 </ul>
-                {{  categoria.nome }}
-            </h2>
         </header>
     </article>
 </template>
