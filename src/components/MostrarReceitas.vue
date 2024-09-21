@@ -4,12 +4,22 @@ import { obterReceitas } from '@/http';
 import type IReceita from '@/interfaces/IReceita';
 import BotaoPrincipal from './BotaoPrincipal.vue';
 import CardReceita from './CardReceita.vue';
+import { itensDeLista1EstaoEmLista2 } from '@/operacoes/listas';
 
 const receitas = ref<IReceita[]>([])
 
+const props = defineProps<{
+    ingredientes: Array<string>
+}>()
+
 const buscarReceitas = async () => {
     try {
-        receitas.value = await obterReceitas()
+        const todasAsReceitas = await obterReceitas()
+        receitas.value = todasAsReceitas.filter((receita) => {
+            const possoFazerReceita = itensDeLista1EstaoEmLista2(receita.ingredientes, props.ingredientes)
+
+            return possoFazerReceita
+        })
     } catch (error) {
         console.error('Erro ao buscar receitas:', error);
     }
