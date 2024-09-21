@@ -1,16 +1,15 @@
 import type ICategoria from "@/interfaces/ICategoria"
-import type IReceitas from "@/interfaces/IReceita"
+import type IReceita from "@/interfaces/IReceita"
+
+async function oberDadosURL<T>(url: string) {
+    const response = await fetch(url);
+    return response.json() as T;
+}
 
 export async function obterCategorias () {
-    const response = await fetch('https://gist.githubusercontent.com/antonio-evaldo/002ad55e1cf01ef3fc6ee4feb9152964/raw/bf463b47860043da3b3604ca60cffc3ad1ba9865/categorias.json')
-
-    const categorias: ICategoria[] = await response.json()
-    return categorias
+    return oberDadosURL<ICategoria[]>('https://gist.githubusercontent.com/antonio-evaldo/002ad55e1cf01ef3fc6ee4feb9152964/raw/bf463b47860043da3b3604ca60cffc3ad1ba9865/categorias.json')
 }
 
 export async function obterReceitas () {
-    const response = await fetch('https://gist.githubusercontent.com/antonio-evaldo/002ad55e1cf01ef3fc6ee4feb9152964/raw/bf463b47860043da3b3604ca60cffc3ad1ba9865/receitas.json')
-
-    const receitas: IReceitas[] = await response.json()
-    return receitas
+    return oberDadosURL<IReceita[]>('https://gist.githubusercontent.com/antonio-evaldo/002ad55e1cf01ef3fc6ee4feb9152964/raw/bf463b47860043da3b3604ca60cffc3ad1ba9865/receitas.json')
 }

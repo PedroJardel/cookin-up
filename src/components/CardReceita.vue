@@ -12,50 +12,40 @@ const props = defineProps<{
     <article class="receita">
         <header class="receita__cabecalho">
             <img :src="`/imagens/receitas/${receita.imagem}`" alt="" class="receita__imagem">
-            <h2 class="paragrafo-lg receita__nome">
+        </header>
+        <section class="receita__corpo">
+            <h2 class="paragrafo receita__nome">
                 {{ receita.nome }}
             </h2>
-        </header>
+        </section>
     </article>
 </template>
 
 <style scoped>
 .receita {
-    width: 19.5rem;
-    border-radius: 1rem;
-    background: var(--branco, #FFF);
-    box-shadow: 4px 4px 10px 0px rgba(68, 68, 68, 0.05);
-    height: 100%;
+  display: flex;
+  width: 17.625rem;
+  max-width: 19.5rem;
+  flex-direction: column;
+  align-items: center;
 
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    overflow: hidden;
+  border-radius: 1rem;
+  background: var(--Branco, #FFF);
+  box-shadow: 4px 4px 12px 0px rgba(68, 68, 68, 0.08);
 }
 
-.receita__cabecalho {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
+.receita__corpo {
+  padding: 2rem 1rem;
 }
 
 .receita__imagem {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  border-radius: 1rem 1rem 0rem 0rem;
+  display: block;
 }
 
 .receita__nome {
-    text-align: center;
-    color: var(--cinza, #444444);
-    font-weight: 700;
-    padding: 1.5rem 0rem;
-}
-
-.receita__ingredientes {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+  font-weight: 700;
+  color: var(--cinza, #444);
 }
 </style>
