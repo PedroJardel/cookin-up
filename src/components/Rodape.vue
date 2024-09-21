@@ -9,9 +9,11 @@
 <style scoped>
     .rodape {
         width: 100%;
+        background: var(--verde-escuro, #263A29);
+        padding: 1.5rem;
+
         display: flex;
         justify-content: center;
-        background: var(--verde-escuro);
-        padding: 24px;
+        align-items: center;
     }
 </style>

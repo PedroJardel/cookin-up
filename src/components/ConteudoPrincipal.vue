@@ -30,7 +30,7 @@ export default {
         <SelecionarIngredientes 
         @adicionar-ingrediente="adicionarIngrediente($event)"
         @remover-ingrediente="removerIngrediente($event)"/>
-        <BotaoPrincipal />
+        <BotaoPrincipal :texto="'Buscar receitas!'"/>
     </main>
 </template>
 
