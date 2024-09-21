@@ -1,4 +1,5 @@
 <script lang="ts">
+import BotaoPrincipal from './BotaoPrincipal.vue';
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
 import SuaLista from './SuaLista.vue';
 
@@ -9,7 +10,7 @@ export default {
       ingredientes: [] as string[]
     }
   },
-    components: { SelecionarIngredientes, SuaLista },
+    components: { SelecionarIngredientes, SuaLista, BotaoPrincipal },
     methods: {
       adicionarIngrediente(ingrediente: string) {
         console.log('caiu aqui')
@@ -29,6 +30,7 @@ export default {
         <SelecionarIngredientes 
         @adicionar-ingrediente="adicionarIngrediente($event)"
         @remover-ingrediente="removerIngrediente($event)"/>
+        <BotaoPrincipal />
     </main>
 </template>
 
