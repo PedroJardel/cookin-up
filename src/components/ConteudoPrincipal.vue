@@ -1,10 +1,13 @@
 <script  setup lang="ts">
 import { ref } from 'vue'
-import BotaoPrincipal from './BotaoPrincipal.vue';
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
 import SuaLista from './SuaLista.vue';
+import MostrarReceitas from './MostrarReceitas.vue';
+
+type Pagina = 'SelecionarIngredientes' | 'MostrarReceitas'
 
 const ingredientes = ref<string[]>([])
+const conteudo = ref<Pagina>('SelecionarIngredientes')
 
 function adicionarIngrediente(ingrediente: string) {
   ingredientes.value.push(ingrediente)
@@ -13,15 +16,22 @@ function adicionarIngrediente(ingrediente: string) {
 function removerIngrediente(ingrediente: string) {
   ingredientes.value = ingredientes.value.filter(ingredienteAtual => ingredienteAtual != ingrediente)
 }
+
+function navegar(pagina: Pagina) {
+  conteudo.value = pagina
+}
 </script>
 
 <template>
     <main class="conteudo-principal">
         <SuaLista :ingredientes="ingredientes"/>
-        <SelecionarIngredientes 
+        <SelecionarIngredientes v-if="conteudo === 'SelecionarIngredientes'"
         @adicionar-ingrediente="adicionarIngrediente($event)"
-        @remover-ingrediente="removerIngrediente($event)"/>
-        <BotaoPrincipal :texto="'Buscar receitas!'"/>
+        @remover-ingrediente="removerIngrediente($event)"
+        @buscar-receitas="navegar('MostrarReceitas')"
+        />
+        <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'"
+        @-voltar-selecao="navegar('SelecionarIngredientes')"/>
     </main>
 </template>
 
