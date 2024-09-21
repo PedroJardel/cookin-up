@@ -1,27 +1,18 @@
-<script lang="ts">
+<script  setup lang="ts">
+import { ref } from 'vue'
 import BotaoPrincipal from './BotaoPrincipal.vue';
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
 import SuaLista from './SuaLista.vue';
 
+const ingredientes = ref<string[]>([])
 
-export default {
-  data() {
-    return {
-      ingredientes: [] as string[]
-    }
-  },
-    components: { SelecionarIngredientes, SuaLista, BotaoPrincipal },
-    methods: {
-      adicionarIngrediente(ingrediente: string) {
-        console.log('caiu aqui')
-        this.ingredientes.push(ingrediente)
-      },
-      removerIngrediente(ingrediente: string) {
-      this.ingredientes = this.ingredientes.filter(ingredienteAtual => ingredienteAtual != ingrediente)
-      }
-    }
+function adicionarIngrediente(ingrediente: string) {
+  ingredientes.value.push(ingrediente)
 }
 
+function removerIngrediente(ingrediente: string) {
+  ingredientes.value = ingredientes.value.filter(ingredienteAtual => ingredienteAtual != ingrediente)
+}
 </script>
 
 <template>
